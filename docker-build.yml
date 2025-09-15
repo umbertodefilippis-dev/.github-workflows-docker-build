@@ -25,5 +25,5 @@ jobs:
         run: |
           docker buildx build \
             --platform linux/amd64 \
-            -t umbertodefilippis/3gm_haa_raw2cal:0.1.0 \
+            -t umbertodefilippis/3gm_haa_raw2cal_0.1.0 \
             --push .
