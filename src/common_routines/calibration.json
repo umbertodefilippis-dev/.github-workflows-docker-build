@@ -1,0 +1,192 @@
+{
+    "ICE": {
+      "tempFEE": {
+        "data": 1.0000000e-02
+      },
+      "channel_Mapping": {
+        "data": "XYZ"
+      },
+      "supplyCurr_offset": {
+        "data": 2.4000000e-02
+      },
+      "supplyCurr": {
+        "data": 7.3000000e-05
+      },
+      "highVolt_bus": {
+        "data": 5.3000000e-03
+      },
+      "highVolt_bus_offset": {
+        "data": 3.1486000e+00
+      },
+      "lowVolt_bus": {
+        "data": 2.0000000e-04
+      },
+      "lowVolt_bus_offset": {
+        "data": -2.0160000e+00
+      },
+      "temppwr": {
+        "data": 1.0000000e-02
+      }
+    },
+    "FEE": {
+      "heater_current5": {
+        "data": 1.3570000e-09
+      },
+      "heater_current4": {
+        "data": 8.9177000e-07
+      },
+      "heater_current3": {
+        "data": 1.5354000e-04
+      },
+      "heater_current2": {
+        "data": 2.5308000e-02
+      },
+      "heater_current1": {
+        "data": 3.7812000e-01
+      }
+    },
+    "AccX": {
+      "alpha": {
+        "data": 2.2900000e-11
+      },
+      "temp_offset": {
+        "data": 2.6760000e+01
+      },
+      "temp_a": {
+        "data": 1.2237700e-03
+      },
+      "heater_current": {
+        "data": 5.6000000e-03
+      },
+      "deltaX": {
+        "data": 1.0000000e-01
+      },
+      "Polynomia": {
+        "P_N1": {
+          "data": 1.0000000e-01
+        },
+        "P_N2": {
+          "data": 1.0000000e-02
+        },
+        "P_N3": {
+          "data": 1.0000000e-03
+        },
+        "P_N4": {
+          "data": 1.0000000e-04
+        }
+      }
+    },
+    "AccY": {
+      "alpha": {
+        "data": 1.8300000e-11
+      },
+      "temp_offset": {
+        "data": 2.6760000e+01
+      },
+      "temp_a": {
+        "data": 1.2237700e-03
+      },
+      "heater_current": {
+        "data": 5.6000000e-03
+      },
+      "deltaY": {
+        "data": 1.0000000e-01
+      },
+      "Polynomia": {
+        "P_N1": {
+          "data": 1.0000000e-01
+        },
+        "P_N2": {
+          "data": 1.0000000e-02
+        },
+        "P_N3": {
+          "data": 1.0000000e-03
+        },
+        "P_N4": {
+          "data": 1.0000000e-04
+        }
+      }
+    },
+    "AccZ": {
+      "alpha": {
+        "data": 1.9300000e-11
+      },
+      "temp_offset": {
+        "data": 2.6760000e+01
+      },
+      "temp_a": {
+        "data": 1.2237700e-03
+      },
+      "heater_current": {
+        "data": 5.6000000e-03
+      },
+      "deltaZ": {
+        "data": 1.0000000e-01
+      },
+      "Polynomia": {
+        "P_N1": {
+          "data": 1.0000000e-01
+        },
+        "P_N2": {
+          "data": 1.0000000e-02
+        },
+        "P_N3": {
+          "data": 1.0000000e-03
+        },
+        "P_N4": {
+          "data": 1.0000000e-04
+        }
+      }
+    },
+    "TEMP_IDA_FEE_DIGITAL_poli": {
+      "deltafee": {
+        "data": 1.0000000e-01
+      },
+      "Polynomia": {
+        "P_N1": {
+          "data": -1.1700000e-12
+        },
+        "P_N2": {
+          "data": 1.2300000e-08
+        },
+        "P_N3": {
+          "data": -1.3400000e-03
+        },
+        "P_N4": {
+          "data": 2.4300000e+01
+        }
+      }
+    },
+    "TEMP_IDA_BOUNDARY_poli": {
+      "Polynomia": {
+        "P_N1": {
+          "data": -1.1700000e-12
+        },
+        "P_N2": {
+          "data": 1.2300000e-08
+        },
+        "P_N3": {
+          "data": -1.3400000e-03
+        },
+        "P_N4": {
+          "data": 2.4300000e+01
+        }
+      }
+    },
+    "TEMP_IDA_FEE_HOTSPOT_poli": {
+      "Polynomia": {
+        "P_N1": {
+          "data": -1.1700000e-12
+        },
+        "P_N2": {
+          "data": 1.2300000e-08
+        },
+        "P_N3": {
+          "data": -1.3400000e-03
+        },
+        "P_N4": {
+          "data": 2.4300000e+01
+        }
+      }
+    }
+  }

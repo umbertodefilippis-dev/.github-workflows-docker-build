@@ -1,0 +1,6 @@
+lxml
+numpy
+scipy
+spiceypy
+pds4_tools
+matplotlib
