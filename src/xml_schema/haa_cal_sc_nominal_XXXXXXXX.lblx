@@ -1,0 +1,290 @@
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1J00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://pds.nasa.gov/pds4/geom/v1/PDS4_GEOM_1J00_1980.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://psa.esa.int/psa/v1/PDS4_PSA_1J00_1401.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://psa.esa.int/psa/juice/v1/PDS4_JUICE_1J00_1003.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
+                       xmlns:geom="http://pds.nasa.gov/pds4/geom/v1"
+                       xmlns:juice="http://psa.esa.int/psa/juice/v1"
+                       xmlns:psa="http://psa.esa.int/psa/v1"
+                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1J00.xsd http://pds.nasa.gov/pds4/geom/v1 https://pds.nasa.gov/pds4/geom/v1/PDS4_GEOM_1J00_1980.xsd http://psa.esa.int/psa/v1 https://psa.esa.int/psa/v1/PDS4_PSA_1J00_1401.xsd http://psa.esa.int/psa/juice/v1 https://psa.esa.int/psa/juice/v1/PDS4_JUICE_1J00_1003.xsd">
+   <Identification_Area>
+      <logical_identifier></logical_identifier>
+      <version_id></version_id>
+      <title></title>
+      <information_model_version></information_model_version>
+      <product_class>Product_Observational</product_class>
+      <Citation_Information>
+         <author_list>Umberto De Filippis</author_list>
+         <publication_year></publication_year>
+         <keyword>Accelerometer</keyword>
+         <keyword>Sloshing</keyword>
+         <keyword>JUICE</keyword>
+         <keyword>Jupiter</keyword>
+         <keyword>Solar System</keyword>
+         <description>Cal science product. Records the position and temperature of each accelerometer</description>
+      </Citation_Information>
+      <Modification_History>
+         <Modification_Detail>
+            <modification_date></modification_date>
+            <version_id></version_id>
+            <description></description>
+         </Modification_Detail>
+      </Modification_History>
+   </Identification_Area>
+   <Observation_Area>
+      <Time_Coordinates>
+         <start_date_time></start_date_time>
+         <stop_date_time></stop_date_time>
+      </Time_Coordinates>
+      <Primary_Result_Summary>
+         <purpose>Science</purpose>
+         <processing_level>Calibrated</processing_level>
+         <Science_Facets>
+            <wavelength_range nilReason="inapplicable" xsi:nil="true"/>
+            <discipline_name>Radio Science</discipline_name>
+         </Science_Facets>
+      </Primary_Result_Summary>
+      <Investigation_Area>
+         <name>JUICE</name>
+         <type>Mission</type>
+         <Internal_Reference>
+            <lid_reference>urn:esa:psa:context:investigation:mission.juice</lid_reference>
+            <reference_type>data_to_investigation</reference_type>
+         </Internal_Reference>
+      </Investigation_Area>
+      <Observing_System>
+         <name>JUICE HAA</name>
+         <Observing_System_Component>
+            <name>JUICE</name>
+            <type>Host</type>
+            <Internal_Reference>
+               <lid_reference>urn:esa:psa:context:instrument_host:spacecraft.juice</lid_reference>
+               <reference_type>is_instrument_host</reference_type>
+            </Internal_Reference>
+         </Observing_System_Component>
+         <Observing_System_Component>
+            <name>HAA</name>
+            <type>Instrument</type>
+            <description>High Accuracy Accelerometer</description>
+            <Internal_Reference>
+               <lid_reference>urn:esa:psa:context:instrument:juice.haa</lid_reference>
+               <reference_type>is_instrument</reference_type>
+            </Internal_Reference>
+         </Observing_System_Component>
+      </Observing_System>
+      <Target_Identification>
+         <name></name>
+         <type></type>
+         <Internal_Reference>
+            <lid_reference></lid_reference>
+            <reference_type>data_to_target</reference_type>
+         </Internal_Reference>
+      </Target_Identification>
+      <Mission_Area>
+         <psa:Mission_Information>
+            <psa:spacecraft_clock_start_count></psa:spacecraft_clock_start_count>
+            <psa:spacecraft_clock_stop_count></psa:spacecraft_clock_stop_count>
+            <psa:mission_phase_name></psa:mission_phase_name>
+            <psa:mission_phase_identifier></psa:mission_phase_identifier>
+            <psa:start_orbit_number></psa:start_orbit_number>
+            <psa:stop_orbit_number></psa:stop_orbit_number>
+         </psa:Mission_Information>
+         <psa:Processing_Context>
+            <psa:processing_software_title>raw2cal-haa</psa:processing_software_title>
+            <psa:processing_software_version></psa:processing_software_version>
+            <psa:Processing_Inputs>
+               <psa:Processing_Input_Identification>
+                  <psa:type>SPICE kernel</psa:type>
+                  <psa:file_name></psa:file_name>
+               </psa:Processing_Input_Identification>
+            </psa:Processing_Inputs>
+         </psa:Processing_Context>
+      </Mission_Area>
+      <Discipline_Area>
+			<geom:Geometry>
+			<geom:Geometry_Orbiter>
+				<geom:geometry_reference_time_utc>2023-06-19T16:21:12.094Z</geom:geometry_reference_time_utc>
+				<geom:Orbiter_Identification>
+					<geom:Geometry_Target_Identification>
+						<geom:body_spice_name></geom:body_spice_name>
+					</geom:Geometry_Target_Identification>
+					<geom:Coordinate_System_Identification>
+						<geom:coordinate_system_type>Cartesian</geom:coordinate_system_type>
+						<geom:Coordinate_System_Origin_Identification>
+							<geom:body_spice_name>SOLAR SYSTEM BARYCENTER</geom:body_spice_name>
+						</geom:Coordinate_System_Origin_Identification>
+						<geom:Reference_Frame_Identification>
+							<geom:frame_spice_name>ECLIPJ2000</geom:frame_spice_name>
+						</geom:Reference_Frame_Identification>
+					</geom:Coordinate_System_Identification>
+				</geom:Orbiter_Identification>
+				<geom:Distances>
+					<geom:Distances_Min_Max>
+						<geom:minimum_spacecraft_heliocentric_distance unit="km"></geom:minimum_spacecraft_heliocentric_distance>
+						<geom:maximum_spacecraft_heliocentric_distance unit="km"></geom:maximum_spacecraft_heliocentric_distance>
+						<geom:minimum_spacecraft_target_center_distance unit="km"></geom:minimum_spacecraft_target_center_distance>
+						<geom:maximum_spacecraft_target_center_distance unit="km"></geom:maximum_spacecraft_target_center_distance>
+						<geom:minimum_target_geocentric_distance unit="km"></geom:minimum_target_geocentric_distance>
+						<geom:maximum_target_geocentric_distance unit="km"></geom:maximum_target_geocentric_distance>
+					</geom:Distances_Min_Max>
+				</geom:Distances>
+				<geom:Vectors>
+					<geom:Vectors_Cartesian_Specific>
+						<geom:Vector_Cartesian_Position_Spacecraft_To_Target>
+							<geom:x_position unit="km"></geom:x_position>
+							<geom:y_position unit="km"></geom:y_position>
+							<geom:z_position unit="km"></geom:z_position>
+							<geom:light_time_correction_applied>Received_Light_Time</geom:light_time_correction_applied>
+							<geom:Coordinate_System_Identification>
+								<geom:coordinate_system_type>Cartesian</geom:coordinate_system_type>
+								<geom:Coordinate_System_Origin_Identification>
+									<geom:body_spice_name>JUICE_SPACECRAFT</geom:body_spice_name>
+								</geom:Coordinate_System_Origin_Identification>
+								<geom:Reference_Frame_Identification>
+									<geom:frame_spice_name>JUICE_SPACECRAFT</geom:frame_spice_name>
+								</geom:Reference_Frame_Identification>
+							</geom:Coordinate_System_Identification>
+						</geom:Vector_Cartesian_Position_Spacecraft_To_Target>
+					</geom:Vectors_Cartesian_Specific>
+					<geom:Generic_Vectors>
+						<geom:Vector_Cartesian_Position_Generic>
+							<geom:x_position unit="km"></geom:x_position>
+							<geom:y_position unit="km"></geom:y_position>
+							<geom:z_position unit="km"></geom:z_position>
+							<geom:light_time_correction_applied>Received_Light_Time</geom:light_time_correction_applied>
+							<geom:Coordinate_System_Identification>
+								<geom:coordinate_system_type>Cartesian</geom:coordinate_system_type>
+								<geom:Coordinate_System_Origin_Identification>
+									<geom:name>JUICE_SPACECRAFT</geom:name>
+								</geom:Coordinate_System_Origin_Identification>
+								<geom:Reference_Frame_Identification>
+									<geom:frame_spice_name>JUICE_SPACECRAFT</geom:frame_spice_name>
+								</geom:Reference_Frame_Identification>
+							</geom:Coordinate_System_Identification>
+							<geom:Observer_Identification>
+								<geom:body_spice_name>JUICE_SPACECRAFT</geom:body_spice_name>
+							</geom:Observer_Identification>
+							<geom:Geometry_Target_Identification>
+								<geom:body_spice_name>EARTH</geom:body_spice_name>
+							</geom:Geometry_Target_Identification>
+						</geom:Vector_Cartesian_Position_Generic>
+						<geom:Vector_Cartesian_Position_Generic>
+							<geom:x_position unit="km"></geom:x_position>
+							<geom:y_position unit="km"></geom:y_position>
+							<geom:z_position unit="km"></geom:z_position>
+							<geom:light_time_correction_applied>Received_Light_Time</geom:light_time_correction_applied>
+							<geom:Coordinate_System_Identification>
+								<geom:coordinate_system_type>Cartesian</geom:coordinate_system_type>
+								<geom:Coordinate_System_Origin_Identification>
+									<geom:name>JUICE_SPACECRAFT</geom:name>
+								</geom:Coordinate_System_Origin_Identification>
+								<geom:Reference_Frame_Identification>
+									<geom:frame_spice_name>JUICE_SPACECRAFT</geom:frame_spice_name>
+								</geom:Reference_Frame_Identification>
+							</geom:Coordinate_System_Identification>
+							<geom:Observer_Identification>
+								<geom:body_spice_name>JUICE_SPACECRAFT</geom:body_spice_name>
+							</geom:Observer_Identification>
+							<geom:Geometry_Target_Identification>
+								<geom:body_spice_name>SUN</geom:body_spice_name>
+							</geom:Geometry_Target_Identification>
+						</geom:Vector_Cartesian_Position_Generic>
+					</geom:Generic_Vectors>
+				</geom:Vectors>
+			</geom:Geometry_Orbiter>
+			</geom:Geometry>
+		</Discipline_Area>
+   </Observation_Area>
+   <File_Area_Observational>
+      <File>
+         <file_name></file_name>
+         <creation_date_time></creation_date_time>
+         <file_size unit="byte"></file_size>
+         <records></records>
+         <md5_checksum></md5_checksum>
+      </File>
+      <Table_Delimited>
+         <name>HAA CAL SCIENCE DATA TABLE</name>
+         <offset unit="byte">0</offset>
+         <parsing_standard_id>PDS DSV 1</parsing_standard_id>
+         <records></records>
+         <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+         <field_delimiter>Comma</field_delimiter>
+         <Record_Delimited>
+            <fields>8</fields>
+            <groups>0</groups>
+            <Field_Delimited>
+               <name>TIME_UTC</name>
+               <field_number>1</field_number>
+               <data_type>ASCII_Date_Time_YMD_UTC</data_type>
+               <maximum_field_length unit="byte">24</maximum_field_length>
+               <field_format>%24s</field_format>
+               <description>UTC TIME OF OBSERVATION: YYYY-MM-DDTHH:MM:SS.SSSZ</description>
+            </Field_Delimited>
+            <Field_Delimited>
+               <name>TIME_OBT</name>
+               <field_number>2</field_number>
+               <data_type>ASCII_String</data_type>
+               <maximum_field_length unit="byte">18</maximum_field_length>
+               <field_format>%-18s</field_format>
+               <description>S/C CLOCK AT OBSERVATION TIME: P/SSSSSSSSSS:FFFFF</description>
+            </Field_Delimited>
+            <Field_Delimited>
+               <name>ACC_X_HAA_URF_DIRECTED</name>
+               <field_number>3</field_number>
+               <data_type>ASCII_Real</data_type>
+               <maximum_field_length unit="byte">22</maximum_field_length>
+               <field_format>%22.15e</field_format>
+               <unit>m/s^2</unit>
+               <description>Position of accelerometer 0 - Counters</description>
+            </Field_Delimited>
+            <Field_Delimited>
+               <name>ACC_Y_HAA_URF_DIRECTED</name>
+               <field_number>4</field_number>
+               <data_type>ASCII_Real</data_type>
+               <maximum_field_length unit="byte">22</maximum_field_length>
+               <field_format>%22.15e</field_format>
+               <unit>m/s^2</unit>
+               <description>Position of accelerometer 1 - Counters</description>
+            </Field_Delimited>
+            <Field_Delimited>
+               <name>ACC_Z_HAA_URF_DIRECTED</name>
+               <field_number>5</field_number>
+               <data_type>ASCII_Real</data_type>
+               <maximum_field_length unit="byte">22</maximum_field_length>
+               <field_format>%22.15e</field_format>
+               <unit>m/s^2</unit>
+               <description>Position of accelerometer 2 - Counters</description>
+            </Field_Delimited>
+            <Field_Delimited>
+               <name>TEMP_X_HAA_URF_DIRECTED</name>
+               <field_number>6</field_number>
+               <data_type>ASCII_Real</data_type>
+               <maximum_field_length unit="byte">22</maximum_field_length>
+               <field_format>%22.15e</field_format>
+               <unit>C°</unit>
+               <description>Temperature of accelerometer 0 - Raw value</description>
+            </Field_Delimited>
+            <Field_Delimited>
+               <name>TEMP_Y_HAA_URF_DIRECTED</name>
+               <field_number>7</field_number>
+               <data_type>ASCII_Real</data_type>
+               <maximum_field_length unit="byte">22</maximum_field_length>
+               <field_format>%22.15e</field_format>
+               <unit>C°</unit>
+               <description>Temperature of accelerometer 1 - Raw value</description>
+            </Field_Delimited>
+            <Field_Delimited>
+               <name>TEMP_Z_HAA_URF_DIRECTED</name>
+               <field_number>8</field_number>
+               <data_type>ASCII_Real</data_type>
+               <maximum_field_length unit="byte">22</maximum_field_length>
+               <field_format>%22.15e</field_format>
+               <unit>C°</unit>
+               <description>Temperature of accelerometer 2 - Raw value</description>
+            </Field_Delimited>
+         </Record_Delimited>
+      </Table_Delimited>
+   </File_Area_Observational>
+</Product_Observational>
