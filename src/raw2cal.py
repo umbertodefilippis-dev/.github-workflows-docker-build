@@ -215,42 +215,47 @@ def extract_tar_gz(input_dir):
                 tar.extractall(path=input_dir)
             print("Extraction complete.")
 
-# Input,output, log initialization
+            # Normalize: move 'pds' and 'miscellaneous' from any subfolder to input_dir
+            for entry in os.listdir(input_dir):
+                full_path = os.path.join(input_dir, entry)
+                if os.path.isdir(full_path):
+                    for sub in ["pds", "miscellaneous"]:
+                        src = os.path.join(full_path, sub)
+                        dst = os.path.join(input_dir, sub)
+                        if os.path.exists(src):
+                            if os.path.exists(dst):
+                                shutil.rmtree(dst)
+                            shutil.move(src, dst)
+                    # Remove the extracted parent folder if empty
+                    if full_path != input_dir:
+                        try:
+                            os.rmdir(full_path)
+                        except OSError:
+                            pass  # folder not empty, leave it
 
-# Define parser with optional arguments and defaults
+# Parser
 parser = argparse.ArgumentParser(description="HAA raw2cal pipeline")
-parser.add_argument('-i', '--input', default='/data/input', help='Path to input data pack (default: /data/inputs/)')
-parser.add_argument('-o', '--output', default='/data/output/', help='Path to output folder (default: /data/outputs/)')
-parser.add_argument('-l', '--log', default="/data/logs/", help='Path to log folder (default: /data/logs/)')
-
+parser.add_argument("-i", "--input", default="/data/input", help="Path to input data pack")
+parser.add_argument("-o", "--output", default="/data/output", help="Path to output folder")
+parser.add_argument("-l", "--log", default="/data/logs", help="Path to log folder")
 args = parser.parse_args()
 
-# As
 input_folder = args.input
 folder_name = args.output
 logs_directory = args.log
 
-
-# Call the extractor before proceeding
+# Extraction + normalization
 extract_tar_gz(input_folder)
 
-# Attempt to find the first subfolder in input_folder that contains 'pds'
-possible_pds = os.path.join(input_folder, 'pds')
-if not os.path.exists(possible_pds):
-    for entry in os.listdir(input_folder):
-        full_path = os.path.join(input_folder, entry)
-        if os.path.isdir(full_path) and os.path.isdir(os.path.join(full_path, 'pds')):
-            print(f"Found pds folder inside: {full_path}")
-            input_folder = full_path
-            break
+pds_folder = os.path.join(input_folder, "pds")
 
-pds_folder = os.path.join(input_folder, 'pds')
-
-# Example metadata (these can be dynamically set as needed)
 origin = "raw2cal_pipeline"
 exec_id = str(uuid.uuid4())  # or pass from main()
 
-# Create output/log folders if they don’t exist
+if not os.path.exists(pds_folder):
+    raise FileNotFoundError(f"Expected folder {pds_folder} not found after extraction/normalization!")
+
+# Create output/logs if not exist
 os.makedirs(folder_name, exist_ok=True)
 os.makedirs(logs_directory, exist_ok=True)
 
