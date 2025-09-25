@@ -20,7 +20,7 @@ COPY src/ ./src/
 RUN chown -R appuser:appuser /app
 
 # Switch to non-root user
-USER appuser
+#USER appuser
 
 # Set default environment variables (can be overridden with -e at runtime)
 ENV INPUT_DIR=/data/input \
@@ -28,7 +28,7 @@ ENV INPUT_DIR=/data/input \
     LOG_DIR=/data/logs 
 
 # Declare volumes (just informative – no effect at runtime unless used with `docker volume`)
-VOLUME ["/data/input", "/data/output/", "/data/logs", "/data/kernels"]
+#VOLUME ["/data/input", "/data/output/", "/data/logs", "/data/kernels"]
 
 # Entrypoint
 ENTRYPOINT ["python3", "src/raw2cal.py"]
