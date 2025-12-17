@@ -1,4 +1,20 @@
 {
+    "PWR_TEMP": {
+        "Polynomia": {
+            "P_N1": {
+                "data": -9.34e-12
+            },
+            "P_N2": {
+                "data": 5.08e-07
+            },
+            "P_N3": {
+                "data": -1.18e-2
+            },
+            "P_N4": {
+                "data": 1.22e+2
+            }
+        }
+    },
     "ICE": {
       "tempFEE": {
         "data": 1.0000000e-02
