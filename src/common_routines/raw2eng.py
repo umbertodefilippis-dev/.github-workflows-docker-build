@@ -45,8 +45,13 @@ def raw2eng(par_data, calibration, product_type, dyn):
         if name_text in ['ACC_X_HAA_URF_DIRECTED', 'ACC_Y_HAA_URF_DIRECTED', 'ACC_Z_HAA_URF_DIRECTED']:        
             par['data'] = [value * calibration[f'Acc{mass}']['alpha']['data'] / int(dyn[i]) for i, value in enumerate(par['data'])]
 
-        if product_type == 'hk' and name_text in ['TEMP_ACC_0', 'TEMP_ACC_1', 'TEMP_ACC_2', 'TEMP_FEE','PWR_TEMP']:
+        if product_type == 'hk' and name_text in ['TEMP_ACC_0', 'TEMP_ACC_1', 'TEMP_ACC_2', 'TEMP_FEE']:
             par['data'] = [value / 100 for value in par['data']]
+        if product_type == 'hk' and name_text =='PWR_TEMP':
+            par['data'] = [value**3 * calibration['PWR_TEMP']['Polynomia']['P_N1']['data'] + \
+                           value**2 * calibration['PWR_TEMP']['Polynomia']['P_N2']['data'] + \
+                           value    * calibration['PWR_TEMP']['Polynomia']['P_N3']['data'] + \
+                                      calibration['PWR_TEMP']['Polynomia']['P_N4']['data'] for value in par['data']]
         if product_type == 'hk' and name_text in ['DELTA_TEMP_FEE', 'DELTA_TEMP_ACC_0', 'DELTA_TEMP_ACC_1', 'DELTA_TEMP_ACC_2']:
             par['data'] = [value / 10 for value in par['data']]
         if product_type == 'hk'and name_text == 'TEMP_IDA_FEE_HOTSPOT':
