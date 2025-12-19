@@ -363,8 +363,8 @@ service_events = [
 
 
 for filename in os.listdir(pds_folder):
-    if 'haa_raw_sc_highrate' in filename:
-        continue                                                # skip entirely highrate for now, TBD: implementation of high rate #
+    #if 'haa_raw_sc_highrate' in filename:
+    #    continue                                                # skip entirely highrate for now, TBD: implementation of high rate #
     if filename.endswith('.lblx'):
         file_path = os.path.join(pds_folder, filename)
         try:
