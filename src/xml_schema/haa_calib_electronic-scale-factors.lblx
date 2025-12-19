@@ -130,7 +130,7 @@
 					<name>ACU</name>
 					<group_number>1</group_number>
 					<repetitions>1</repetitions>
-					<fields>14</fields>
+					<fields>18</fields>
 					<groups>0</groups>
 					<description>
 						ACU FEE actual temperature read from the sensor selected for thermal control: T[C°] = temp_a*temp_raw 
@@ -142,12 +142,52 @@
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
 						<description>
-							Temperature Sensor coeff_A Calibration 
+							PWR TEMP ACU fourth order calibration coefficient 
+						</description>
+					</Field_Delimited>
+					<Field_Delimited>
+						<name>temp_a</name>
+						<field_number>2</field_number>
+						<data_type>ASCII_Real</data_type>
+						<maximum_field_length unit="byte">14</maximum_field_length>
+						<field_format>%+14.7e</field_format>
+						<description>
+							PWR TEMP ACU third order calibration coefficient 
+						</description>
+					</Field_Delimited>
+					<Field_Delimited>
+						<name>temp_a</name>
+						<field_number>3</field_number>
+						<data_type>ASCII_Real</data_type>
+						<maximum_field_length unit="byte">14</maximum_field_length>
+						<field_format>%+14.7e</field_format>
+						<description>
+							PWR TEMP ACU second order calibration coefficient 
+						</description>
+					</Field_Delimited>
+					<Field_Delimited>
+						<name>temp_a</name>
+						<field_number>4</field_number>
+						<data_type>ASCII_Real</data_type>
+						<maximum_field_length unit="byte">14</maximum_field_length>
+						<field_format>%+14.7e</field_format>
+						<description>
+							PWR TEMP ACU first order calibration coefficient 
+						</description>
+					</Field_Delimited>
+					<Field_Delimited>
+						<name>temp_a</name>
+						<field_number>5</field_number>
+						<data_type>ASCII_Real</data_type>
+						<maximum_field_length unit="byte">14</maximum_field_length>
+						<field_format>%+14.7e</field_format>
+						<description>
+							PWR TEMP ACU constant calibration coefficient 
 						</description>
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>channel_Mapping</name>
-						<field_number>2</field_number>
+						<field_number>6</field_number>
 						<data_type>ASCII_String</data_type>
 						<maximum_field_length unit="byte">3</maximum_field_length>
 						<!-- <field_format>%s</field_format> -->
@@ -157,7 +197,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>supplyCurr_offset</name>
-						<field_number>3</field_number>
+						<field_number>7</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -167,7 +207,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>supplyCurr</name>
-						<field_number>4</field_number>
+						<field_number>8</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -177,7 +217,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>highVolt_bus_offset</name>
-						<field_number>5</field_number>
+						<field_number>9</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -187,7 +227,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>highVolt_bus</name>
-						<field_number>6</field_number>
+						<field_number>10</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -197,7 +237,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>lowVolt_bus_offset</name>
-						<field_number>7</field_number>
+						<field_number>11</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -207,7 +247,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>lowVolt_bus</name>
-						<field_number>8</field_number>
+						<field_number>12</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -217,7 +257,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>temp_pwr</name>
-						<field_number>9</field_number>
+						<field_number>13</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -227,7 +267,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>corr_heater_a</name>
-						<field_number>10</field_number>
+						<field_number>14</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -237,7 +277,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>corr_heater_b</name>
-						<field_number>11</field_number>
+						<field_number>15</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -247,7 +287,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>corr_heater_c</name>
-						<field_number>12</field_number>
+						<field_number>16</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -257,7 +297,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>corr_heater_d</name>
-						<field_number>13</field_number>
+						<field_number>17</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
@@ -267,7 +307,7 @@
 					</Field_Delimited>
 					<Field_Delimited>
 						<name>corr_heater_offset</name>
-						<field_number>14</field_number>
+						<field_number>18</field_number>
 						<data_type>ASCII_Real</data_type>
 						<maximum_field_length unit="byte">14</maximum_field_length>
 						<field_format>%+14.7e</field_format>
