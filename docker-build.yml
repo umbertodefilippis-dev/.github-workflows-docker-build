@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main   # or your default branch
-      - developer
+      - developer 
 
 jobs:
   docker:
