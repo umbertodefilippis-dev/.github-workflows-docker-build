@@ -907,7 +907,6 @@ for filename in os.listdir(pds_folder):
                 )
 
 ###################### add of calibrated highrate data (TBC) ########################
-"""
         if product_type == 'sc_hr':
 
                     Flyby_target = structures_par.label.findall('.//Target_Identification/name') 
@@ -1051,4 +1050,3 @@ for filename in os.listdir(pds_folder):
                             exec_id,
                             f"Metadata generation failed — expected file '{xmlschema_edited}' not found."
                         )
-"""

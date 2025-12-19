@@ -27,7 +27,7 @@ def raw2eng(par_data, calibration, product_type, dyn):
         if product_type == 'sc_hr' and name_text in ['POS']:
             masstring = str(calibration['ICE']['channel_Mapping']['data'])
             mass = re.search('_([XYZ])_', name_text).group(1)
-            acc = par['data']
+            acc = par['data']* calibration[f'Acc{mass}']['alpha']['data']*calibration['HR']['alpha']['data']
 
 #### TBC ####
         
