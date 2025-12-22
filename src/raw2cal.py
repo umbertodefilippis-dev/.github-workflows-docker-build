@@ -1029,7 +1029,7 @@ for filename in os.listdir(pds_folder):
                         }
                         
                         }
-                    xmlschema = './src/xml_schema/src/xml_schema/haa_cal_sc_highrate_XXXXXXXX.lblx'
+                    xmlschema = './src/xml_schema/haa_cal_sc_highrate_XXXXXXXX.lblx'
                     raw2eng_DictionaryHK(time, eng_data, xmlschema,xmlschema_edited, config)
 
                     if os.path.isfile(xmlschema_edited):
