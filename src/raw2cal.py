@@ -917,7 +917,7 @@ for filename in os.listdir(pds_folder):
                     eng_data = {key: eng[key]['data'] for key in eng.keys()}
                     time = eng['TIME_UTC']['data']
 
-
+                    print(key)
 
                     lid = structures_par.label.findall('.//Identification_Area/logical_identifier')
                     mfn = structures_par.label.findall('.//psa:mission_phase_name')
