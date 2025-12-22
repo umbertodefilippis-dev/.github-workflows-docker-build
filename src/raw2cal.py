@@ -10,6 +10,7 @@ from scipy.spatial.transform import Rotation
 from common_routines.raw2cal_Dictionaryscience import raw2cal_Dictionaryscience
 from common_routines.raw2eng_Dictionaryscience import raw2eng_Dictionaryscience
 from common_routines.raw2eng_DictionaryHK import raw2eng_DictionaryHK
+from common_routines.raw2cal_DictionaryscienceHR import raw2cal_DictionaryscienceHR
 from common_routines.calibration_Dictionary import calibration_Dictionary
 import os
 from common_routines.csv_writer import csvwriter
@@ -1030,7 +1031,7 @@ for filename in os.listdir(pds_folder):
                         
                         }
                     xmlschema = './src/xml_schema/haa_cal_sc_highrate_XXXXXXXX.lblx'
-                    raw2eng_DictionaryHK(time, eng_data, xmlschema,xmlschema_edited, config)
+                    raw2cal_DictionaryscienceHR(time, eng_data, xmlschema,xmlschema_edited, config)
 
                     if os.path.isfile(xmlschema_edited):
                         write_log(
