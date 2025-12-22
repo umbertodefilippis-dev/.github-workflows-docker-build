@@ -10,6 +10,7 @@ from scipy.spatial.transform import Rotation
 from common_routines.raw2cal_Dictionaryscience import raw2cal_Dictionaryscience
 from common_routines.raw2eng_Dictionaryscience import raw2eng_Dictionaryscience
 from common_routines.raw2eng_DictionaryHK import raw2eng_DictionaryHK
+from common_routines.raw2cal_DictionaryscienceHR import raw2cal_DictionaryscienceHR
 from common_routines.calibration_Dictionary import calibration_Dictionary
 import os
 from common_routines.csv_writer import csvwriter
@@ -363,8 +364,8 @@ service_events = [
 
 
 for filename in os.listdir(pds_folder):
-    if 'haa_raw_sc_highrate' in filename:
-        continue                                                # skip entirely highrate for now, TBD: implementation of high rate #
+    #if 'haa_raw_sc_highrate' in filename:
+    #    continue                                                # skip entirely highrate for now, TBD: implementation of high rate #
     if filename.endswith('.lblx'):
         file_path = os.path.join(pds_folder, filename)
         try:
@@ -381,7 +382,6 @@ for filename in os.listdir(pds_folder):
                 with open(log_file_path, "a") as log_file:
                     log_file.write(f"Skipping {filename} as it does not match expected patterns." + "\n")
                 continue
-
             structures_par = pds4_tools.read(file_path)
             par_data = structures_par[0].data
             xmlschema = './src/xml_schema/haa_cal_sc_nominal_XXXXXXXX.lblx'
@@ -398,10 +398,8 @@ for filename in os.listdir(pds_folder):
                         'data': par_data[key], 
                         }
 # Compute HAA selected dynamic  
-         
             dyn = generate_dyn_vector(par_data, service_events)
             eng = raw2eng.raw2eng(par_data2, calibration, product_type, dyn)
-
             write_log(
                 log_path=log_file_path,
                 severity="INFO",
@@ -907,148 +905,146 @@ for filename in os.listdir(pds_folder):
                 )
 
 ###################### add of calibrated highrate data (TBC) ########################
-"""
         if product_type == 'sc_hr':
 
-                    Flyby_target = structures_par.label.findall('.//Target_Identification/name') 
-                    Flyby_target=Flyby_target[0].text
+            Flyby_target = structures_par.label.findall('.//Target_Identification/name') 
+            Flyby_target=Flyby_target[0].text
 
 
-                    eng_data = {key: eng[key]['data'] for key in eng.keys()}
-                    time = eng['TIME_UTC']['data']
+            eng_data = {key: eng[key]['data'] for key in eng.keys()}
+            time = eng['TIME_UTC']['data']
+            
+            print(eng.keys())
+
+            lid = structures_par.label.findall('.//Identification_Area/logical_identifier')
+            mfn = structures_par.label.findall('.//psa:mission_phase_name')
+            mfi = structures_par.label.findall('.//psa:mission_phase_identifier')
+            type = structures_par.label.findall('.//Target_Identification/type')
+            fn = structures_par.label.findall('.//file_name')
+            l = structures_par.label.findall('.//file_size') 
+
+            #folder_name = 'src/outputs'
+            file_name = fn[0].text
+            file_name = file_name.replace('.csv', '')
+            file_name = file_name.replace('raw', 'cal')
+
+            # Create the folder if it doesn't exist
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
 
 
+            v_id = extract_version_id(version_summary_path)
+            # Split version_id in `i` e `j`
+            version_parts = v_id.split(".")
+            if len(version_parts) != 2:
+                raise ValueError(f"Version ID {v_id} non è nel formato corretto i.j")
 
-                    lid = structures_par.label.findall('.//Identification_Area/logical_identifier')
-                    mfn = structures_par.label.findall('.//psa:mission_phase_name')
-                    mfi = structures_par.label.findall('.//psa:mission_phase_identifier')
-                    type = structures_par.label.findall('.//Target_Identification/type')
-                    fn = structures_par.label.findall('.//file_name')
-                    l = structures_par.label.findall('.//file_size') 
+            i, j = version_parts
+            xmlschema_edited = folder_name+f"{file_name}__{i}_{j}.lblx"
+            file_name = f"{file_name}__{i}_{j}.csv"  # Aggiungi il suffisso
 
-                    #folder_name = 'src/outputs'
-                    file_name = fn[0].text
-                    file_name = file_name.replace('.csv', '')
-                    file_name = file_name.replace('raw', 'cal')
+            # Combine the folder path and file name
+            file_path_dic = os.path.join(folder_name, file_name)
 
-                    # Create the folder if it doesn't exist
-                    if not os.path.exists(folder_name):
-                        os.makedirs(folder_name)
+            csvwriter(eng_data,file_name,folder_name)
 
+            if os.path.isfile(folder_name + file_name):
+                write_log(
+                    log_file_path,
+                    "INFO",
+                    origin,
+                    "Creation of CSV file",
+                    exec_id,
+                    f"CSV saved successfully with name: {file_path_dic}"
+                )
+            else:
+                write_log(
+                    log_file_path,
+                    "ERROR",
+                    origin,
+                    "Creation of CSV file",
+                    exec_id,
+                    f"Error in saving CSV with name: {file_path_dic}"
+                )
 
-                    v_id = extract_version_id(version_summary_path)
-                    # Split version_id in `i` e `j`
-                    version_parts = v_id.split(".")
-                    if len(version_parts) != 2:
-                        raise ValueError(f"Version ID {v_id} non è nel formato corretto i.j")
+            csv_checksum = compute_checksum(folder_name+file_name)                        
 
-                    i, j = version_parts
-                    xmlschema_edited = folder_name+f"{file_name}__{i}_{j}.lblx"
-                    file_name = f"{file_name}__{i}_{j}.csv"  # Aggiungi il suffisso
+            # Combine the folder path and file name
+            file_path_dic = os.path.join(folder_name, file_name)
 
-                    # Combine the folder path and file name
-                    file_path_dic = os.path.join(folder_name, file_name)
-
-                    csvwriter(eng_data,file_name,folder_name)
-
-                    if os.path.isfile(folder_name + file_name):
-                        write_log(
-                            log_file_path,
-                            "INFO",
-                            origin,
-                            "Creation of CSV file",
-                            exec_id,
-                            f"CSV saved successfully with name: {file_path_dic}"
-                        )
-                    else:
-                        write_log(
-                            log_file_path,
-                            "ERROR",
-                            origin,
-                            "Creation of CSV file",
-                            exec_id,
-                            f"Error in saving CSV with name: {file_path_dic}"
-                        )
-
-                    csv_checksum = compute_checksum(folder_name+file_name)                        
-
-                    # Combine the folder path and file name
-                    file_path_dic = os.path.join(folder_name, file_name)
-
-                    namecsv = file_path_dic 
+            namecsv = file_path_dic 
 
 
-                    if os.path.exists(str(file_path_dic)+'.npz'):
-                        # Delete the file
-                        os.remove(str(file_path_dic)+'.npz')
+            if os.path.exists(str(file_path_dic)+'.npz'):
+                # Delete the file
+                os.remove(str(file_path_dic)+'.npz')
 
-                    #if os.path.exists(file_path):
-                        # Delete the file
-                    #    os.remove(file_path)
-                    
-                    
-                    SUNmin_dist, SUNmax_dist = compute_spacecraft_target_distances(str(time[0]), str(time[-1]), "JUICE", "SUN")
-                    Targetmin_dist, Targetmax_dist = compute_spacecraft_target_distances(str(time[0]), str(time[-1]), "JUICE", Flyby_target)
-                    Earthmin_dist, Earthmax_dist = compute_spacecraft_target_distances(str(time[0]), str(time[-1]), "JUICE", "Earth")
+            #if os.path.exists(file_path):
+                # Delete the file
+            #    os.remove(file_path)
+            
+            
+            SUNmin_dist, SUNmax_dist = compute_spacecraft_target_distances(str(time[0]), str(time[-1]), "JUICE", "SUN")
+            Targetmin_dist, Targetmax_dist = compute_spacecraft_target_distances(str(time[0]), str(time[-1]), "JUICE", Flyby_target)
+            Earthmin_dist, Earthmax_dist = compute_spacecraft_target_distances(str(time[0]), str(time[-1]), "JUICE", "Earth")
 
 
-                    config = {
-                        'input_folder': '',
-                        'output_folder': '',
-                        'dynamic': dyn,                                                
-                        'Mission_Information': {
-                            'mission_phase_identifier': mfi[0].text,
-                            'mission_phase_name': mfn[0].text,
-                            'lid': lid[0].text,
-                            'filename': os.path.splitext(fn[0].text)[0].replace('raw', 'cal'),
-                            'filesize':l[0].text,
-                            'filename_csv' : file_name
-                        },
-                        'Target_Identification': {
-                            'name': Flyby_target,
-                            'type': type[0].text,
-                            'lid_reference': 'urn:nasa:pds:context:target:'+type[0].text.lower()+'.'+Flyby_target.lower()
-                        },
-                        'Modification_detail': {
-                            'version_id': str(v_id),                     
-                        },
-                        'File_Area_Observational': {
-                            'file_size': get_file_size(namecsv),
-                            'records': get_file_records(namecsv),
-                            'checksum': str(csv_checksum),
-                        },
-                        'Processing_Input_Identification': {
-                            'file_name': kernel_name,
-                        },
-                        'Distances_Min_Max': {
-                            'minimum_spacecraft_heliocentric_distance': SUNmin_dist,
-                            'maximum_spacecraft_heliocentric_distance': SUNmax_dist,
-                            'minimum_spacecraft_target_center_distance': Targetmin_dist,
-                            'maximum_spacecraft_target_center_distance': Targetmax_dist,
-                            'minimum_target_geocentric_distance': Earthmin_dist,
-                            'maximum_target_geocentric_distance': Earthmax_dist,
-                        }
-                        
-                        }
-                    xmlschema = './src/xml_schema/src/xml_schema/haa_cal_sc_highrate_XXXXXXXX.lblx'
-                    raw2eng_DictionaryHK(time, eng_data, xmlschema,xmlschema_edited, config)
+            config = {
+                'input_folder': '',
+                'output_folder': '',
+                'dynamic': dyn,                                                
+                'Mission_Information': {
+                    'mission_phase_identifier': mfi[0].text,
+                    'mission_phase_name': mfn[0].text,
+                    'lid': lid[0].text,
+                    'filename': os.path.splitext(fn[0].text)[0].replace('raw', 'cal'),
+                    'filesize':l[0].text,
+                    'filename_csv' : file_name
+                },
+                'Target_Identification': {
+                    'name': Flyby_target,
+                    'type': type[0].text,
+                    'lid_reference': 'urn:nasa:pds:context:target:'+type[0].text.lower()+'.'+Flyby_target.lower()
+                },
+                'Modification_detail': {
+                    'version_id': str(v_id),                     
+                },
+                'File_Area_Observational': {
+                    'file_size': get_file_size(namecsv),
+                    'records': get_file_records(namecsv),
+                    'checksum': str(csv_checksum),
+                },
+                'Processing_Input_Identification': {
+                    'file_name': kernel_name,
+                },
+                'Distances_Min_Max': {
+                    'minimum_spacecraft_heliocentric_distance': SUNmin_dist,
+                    'maximum_spacecraft_heliocentric_distance': SUNmax_dist,
+                    'minimum_spacecraft_target_center_distance': Targetmin_dist,
+                    'maximum_spacecraft_target_center_distance': Targetmax_dist,
+                    'minimum_target_geocentric_distance': Earthmin_dist,
+                    'maximum_target_geocentric_distance': Earthmax_dist,
+                }
+                
+                }
+            xmlschema = './src/xml_schema/haa_cal_sc_highrate_XXXXXXXX.lblx'
+            raw2cal_DictionaryscienceHR(time, eng_data, xmlschema,xmlschema_edited, config)
 
-                    if os.path.isfile(xmlschema_edited):
-                        write_log(
-                            log_file_path,
-                            "INFO",
-                            origin,
-                            "Creation of metadata file",
-                            exec_id,
-                            f"Metadata saved successfully in: {xmlschema_edited}"
-                        )
-                    else:
-                        write_log(
-                            log_file_path,
-                            "ERROR",
-                            origin,
-                            "Creation of metadata file",
-                            exec_id,
-                            f"Metadata generation failed — expected file '{xmlschema_edited}' not found."
-                        )
-"""
+            if os.path.isfile(xmlschema_edited):
+                write_log(
+                    log_file_path,
+                    "INFO",
+                    origin,
+                    "Creation of metadata file",
+                    exec_id,
+                    f"Metadata saved successfully in: {xmlschema_edited}"
+                )
+            else:
+                write_log(
+                    log_file_path,
+                    "ERROR",
+                    origin,
+                    "Creation of metadata file",
+                    exec_id,
+                    f"Metadata generation failed — expected file '{xmlschema_edited}' not found."
+                )

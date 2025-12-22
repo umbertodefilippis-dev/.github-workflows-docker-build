@@ -24,11 +24,18 @@ def raw2eng(par_data, calibration, product_type, dyn):
             par['data'] = [value  for value in par['data']]
         if product_type == 'sc_hr' and name_text == 'TIME_OBT':
             par['data'] = [value  for value in par['data']]
+        if product_type == 'sc_hr' and name_text == 'ACC_ACQUIRED':
+            par['data'] = [value  for value in par['data']]
         if product_type == 'sc_hr' and name_text in ['POS']:
-            masstring = str(calibration['ICE']['channel_Mapping']['data'])
-            mass = re.search('_([XYZ])_', name_text).group(1)
-            acc = par['data']
-
+            axes = [str(a) for a in par_data['ACC_ACQUIRED']['data']]
+            par['data'] = [
+                value
+                * calibration[f'Acc{axis}']['alpha']['data']
+                * calibration['HR']['alpha']['data']
+                for value, axis in zip(par['data'], axes)
+            ]
+        if product_type == 'sc_hr' and name_text == 'INTERPOLATED':
+            par['data'] = [value  for value in par['data']]
 #### TBC ####
         
         if product_type == 'sc':
