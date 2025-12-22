@@ -27,8 +27,10 @@ def raw2eng(par_data, calibration, product_type, dyn):
         if product_type == 'sc_hr' and name_text == 'ACC_ACQUIRED':
             par['data'] = [value  for value in par['data']]
         if product_type == 'sc_hr' and name_text in ['POS']:
-            acc = [value * calibration[f"Acc{axis.lower()}"]['alpha']['data']* calibration['HR']['alpha']['data']for value, axis in zip(par['data'],par_data['ACC_ACQUIRED']['data']
-        )]
+            print(par_data['ACC_ACQUIRED']['data'])
+            acc = [value * calibration[f"Acc{axis.lower()}"]['alpha']['data']* calibration['HR']['alpha']['data']for value, axis in zip(par['data'],par_data['ACC_ACQUIRED']['data'])]
+        if product_type == 'sc_hr' and name_text == 'INTERPOLATED':
+            par['data'] = [value  for value in par['data']]
 #### TBC ####
         
         if product_type == 'sc':
