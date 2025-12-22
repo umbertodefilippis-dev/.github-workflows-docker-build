@@ -398,10 +398,8 @@ for filename in os.listdir(pds_folder):
                         'data': par_data[key], 
                         }
 # Compute HAA selected dynamic  
-            print(par_data2.keys())
             dyn = generate_dyn_vector(par_data, service_events)
             eng = raw2eng.raw2eng(par_data2, calibration, product_type, dyn)
-            print(eng.keys())
             write_log(
                 log_path=log_file_path,
                 severity="INFO",
