@@ -916,7 +916,7 @@ for filename in os.listdir(pds_folder):
 
                     eng_data = {key: eng[key]['data'] for key in eng.keys()}
                     time = eng['TIME_UTC']['data']
-
+                    print(product_type)
                     print(eng.keys())
 
                     lid = structures_par.label.findall('.//Identification_Area/logical_identifier')
