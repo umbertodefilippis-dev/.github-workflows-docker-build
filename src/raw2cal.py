@@ -382,7 +382,7 @@ for filename in os.listdir(pds_folder):
                 with open(log_file_path, "a") as log_file:
                     log_file.write(f"Skipping {filename} as it does not match expected patterns." + "\n")
                 continue
-
+            print(file_path)
             structures_par = pds4_tools.read(file_path)
             par_data = structures_par[0].data
             xmlschema = './src/xml_schema/haa_cal_sc_nominal_XXXXXXXX.lblx'
@@ -916,7 +916,7 @@ for filename in os.listdir(pds_folder):
 
                     eng_data = {key: eng[key]['data'] for key in eng.keys()}
                     time = eng['TIME_UTC']['data']
-                    print(product_type)
+                    
                     print(eng.keys())
 
                     lid = structures_par.label.findall('.//Identification_Area/logical_identifier')
